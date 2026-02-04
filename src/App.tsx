@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cpu, Volume2, VolumeX } from "lucide-react";
 import Navigation from "./components/Navigation";
@@ -6,6 +6,8 @@ import Dashboard from "./components/Dashboard";
 import Projects from "./components/Projects";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import SecretTerminal from "./components/SecretTerminal";
+import HackingMiniGame from "./components/HackingMiniGame";
 import { SoundProvider, useSound } from "./context/SoundContext";
 
 const SoundToggle = () => {
@@ -38,6 +40,49 @@ const RenderView = ({ currentView }: { currentView: string }) => {
 
 function MainLayout() {
   const [currentView, setCurrentView] = useState("dashboard");
+  const [showTerminal, setShowTerminal] = useState(false);
+  const [showGame, setShowGame] = useState(false);
+
+  // Konami Code State
+  const [konamiIndex, setKonamiIndex] = useState(0);
+  const KONAMI_CODE = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+    "b",
+    "a",
+  ];
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Toggle Terminal on Backtick/Tilde
+      if (e.key === "`" || e.key === "~") {
+        setShowTerminal((prev) => !prev);
+      }
+
+      // Konami Code Logic
+      if (e.key === KONAMI_CODE[konamiIndex]) {
+        const nextIndex = konamiIndex + 1;
+        if (nextIndex === KONAMI_CODE.length) {
+          // Code Activated
+          setShowGame(true);
+          setKonamiIndex(0);
+        } else {
+          setKonamiIndex(nextIndex);
+        }
+      } else {
+        setKonamiIndex(0); // Reset if mistake
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [konamiIndex]);
 
   return (
     <div className="min-h-screen bg-brand-dark text-white font-mono overflow-hidden relative selection:bg-brand-neon selection:text-black">
@@ -53,6 +98,15 @@ function MainLayout() {
 
       {/* CRT Scanline Effect */}
       <div className="absolute inset-0 z-50 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] opacity-20"></div>
+
+      {/* Secret Overlays */}
+      <SecretTerminal
+        isOpen={showTerminal}
+        onClose={() => setShowTerminal(false)}
+        onGameStart={() => setShowGame(true)}
+      />
+
+      {showGame && <HackingMiniGame onClose={() => setShowGame(false)} />}
 
       <main className="relative z-10 p-4 md:p-6 h-screen flex flex-col max-w-7xl mx-auto">
         <header className="flex justify-between items-center mb-6 border-b border-brand-neon/30 pb-4 shrink-0">
