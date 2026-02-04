@@ -19,7 +19,17 @@ body {
     system-ui,
     -apple-system,
     sans-serif;
-  cursor: crosshair;
+  cursor: none; /* Hide default cursor globally */
+}
+
+/* Force override for interactive elements to ensure custom cursor visibility */
+a,
+button,
+input,
+textarea,
+select,
+[role="button"] {
+  cursor: none !important;
 }
 
 ::-webkit-scrollbar {

@@ -8,6 +8,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import SecretTerminal from "./components/SecretTerminal";
 import HackingMiniGame from "./components/HackingMiniGame";
+import CustomCursor from "./components/CustomCursor";
 import { SoundProvider, useSound } from "./context/SoundContext";
 
 const SoundToggle = () => {
@@ -42,6 +43,15 @@ function MainLayout() {
   const [currentView, setCurrentView] = useState("dashboard");
   const [showTerminal, setShowTerminal] = useState(false);
   const [showGame, setShowGame] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   // Konami Code State
   const [konamiIndex, setKonamiIndex] = useState(0);
@@ -85,14 +95,36 @@ function MainLayout() {
   }, [konamiIndex]);
 
   return (
-    <div className="min-h-screen bg-brand-dark text-white font-mono overflow-hidden relative selection:bg-brand-neon selection:text-black">
-      {/* Background Grid Effect */}
+    <div className="min-h-screen bg-brand-dark text-white font-mono overflow-hidden relative selection:bg-brand-neon selection:text-black cursor-none">
+      <CustomCursor />
+
+      {/* Background Grid - Base Layer (Dim) */}
       <div
-        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 z-0 opacity-5 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0, 255, 157, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 157, 0.1) 1px, transparent 1px)",
+            "linear-gradient(rgba(0, 255, 157, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 157, 0.3) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
+        }}
+      ></div>
+
+      {/* Background Grid - Spotlight Layer (Bright & Masked) */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0, 255, 157, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 157, 0.4) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+          maskImage: `radial-gradient(300px circle at ${mousePos.x}px ${mousePos.y}px, black, transparent)`,
+          WebkitMaskImage: `radial-gradient(300px circle at ${mousePos.x}px ${mousePos.y}px, black, transparent)`,
+        }}
+      ></div>
+
+      {/* Ambient Spotlight Glow */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none opacity-20 mix-blend-screen"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 255, 157, 0.15), transparent 80%)`,
         }}
       ></div>
 

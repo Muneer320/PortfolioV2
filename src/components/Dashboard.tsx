@@ -1,6 +1,7 @@
 import React from "react";
 import { profile } from "../data";
 import { Shield, Zap, Brain, Crosshair, Terminal } from "lucide-react";
+import { motion } from "framer-motion";
 
 const StatBar: React.FC<{
   label: string;
@@ -50,9 +51,25 @@ const Dashboard: React.FC = () => {
           <div className="absolute inset-0 bg-brand-neon/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div className="h-full flex items-center justify-center bg-gradient-to-b from-transparent to-brand-neon/10">
             {/* Placeholder for 3D Model or Avatar Image */}
-            <div className="text-brand-neon/20 text-6xl md:text-9xl transition-all duration-300">
+            <motion.div
+              className="text-brand-neon/20 text-6xl md:text-9xl"
+              animate={{
+                y: [0, -20, 0],
+                scale: [1, 1.05, 1],
+                filter: [
+                  "drop-shadow(0 0 10px rgba(0,255,157,0.2))",
+                  "drop-shadow(0 0 25px rgba(0,255,157,0.5))",
+                  "drop-shadow(0 0 10px rgba(0,255,157,0.2))",
+                ],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
               <UserAvatar />
-            </div>
+            </motion.div>
           </div>
 
           <div className="absolute bottom-4 left-4 right-4">

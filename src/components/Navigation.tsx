@@ -18,8 +18,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
   ];
 
   return (
-    <nav className="mt-6 flex justify-center w-full">
-      <div className="flex gap-2 md:gap-4 bg-brand-dark/80 p-2 rounded-xl border border-brand-neon/30 w-full md:w-auto justify-between md:justify-center overflow-x-auto">
+    <nav className="mt-6 flex justify-center w-full cursor-none">
+      <div className="flex gap-2 md:gap-4 bg-brand-dark/80 p-2 rounded-xl border border-brand-neon/30 w-full md:w-auto justify-between md:justify-center overflow-x-auto cursor-none">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentView === item.id;
@@ -33,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
               }}
               onMouseEnter={playHover}
               className={`
-                relative flex items-center justify-center gap-2 px-3 py-2 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex-1 md:flex-none
+                relative flex items-center justify-center gap-2 px-3 py-2 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex-1 md:flex-none cursor-none
                 ${
                   isActive
                     ? "bg-brand-neon/20 text-brand-neon shadow-[0_0_15px_rgba(0,255,157,0.3)] border border-brand-neon/50"
