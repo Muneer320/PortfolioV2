@@ -43,14 +43,14 @@ const StatBar: React.FC<{
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-8 h-full">
+    <div className="flex flex-col md:flex-row gap-8 min-h-full md:h-full">
       {/* Character Model / Avatar Section */}
       <div className="md:w-1/3 flex flex-col">
-        <div className="flex-1 bg-black/30 border border-brand-neon/20 rounded-lg p-4 relative overflow-hidden group">
+        <div className="flex-1 bg-black/30 border border-brand-neon/20 rounded-lg p-4 relative overflow-hidden group min-h-[300px] md:min-h-0">
           <div className="absolute inset-0 bg-brand-neon/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div className="h-64 md:h-full flex items-center justify-center bg-gradient-to-b from-transparent to-brand-neon/10">
+          <div className="h-full flex items-center justify-center bg-gradient-to-b from-transparent to-brand-neon/10">
             {/* Placeholder for 3D Model or Avatar Image */}
-            <div className="text-brand-neon/20 text-9xl">
+            <div className="text-brand-neon/20 text-6xl md:text-9xl transition-all duration-300">
               <UserAvatar />
             </div>
           </div>

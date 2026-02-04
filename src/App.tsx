@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cpu, Volume2, VolumeX } from "lucide-react";
+import { Cpu, Volume2, VolumeX, Terminal as TerminalIcon } from "lucide-react";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
 import Projects from "./components/Projects";
@@ -108,7 +108,7 @@ function MainLayout() {
 
       {showGame && <HackingMiniGame onClose={() => setShowGame(false)} />}
 
-      <main className="relative z-10 p-4 md:p-6 h-screen flex flex-col max-w-7xl mx-auto">
+      <main className="relative z-10 p-4 md:p-6 h-[100dvh] flex flex-col max-w-7xl mx-auto">
         <header className="flex justify-between items-center mb-6 border-b border-brand-neon/30 pb-4 shrink-0">
           <div className="flex items-center gap-2">
             <Cpu className="text-brand-neon animate-pulse" />
@@ -120,11 +120,17 @@ function MainLayout() {
             <div className="hidden md:block text-xs text-brand-neon/70 font-mono">
               SYS.STATUS: ONLINE | LOC: BLR | v2.0.1
             </div>
+            <button
+              onClick={() => setShowTerminal(true)}
+              className="md:hidden text-brand-neon/70 hover:text-brand-neon"
+            >
+              <TerminalIcon size={20} />
+            </button>
             <SoundToggle />
           </div>
         </header>
 
-        <section className="flex-1 overflow-hidden relative border border-brand-neon/20 bg-black/40 backdrop-blur-sm rounded-lg p-4 md:p-6 box-glow shadow-2xl">
+        <section className="flex-1 overflow-hidden relative border border-brand-neon/20 bg-black/40 backdrop-blur-sm rounded-lg p-2 md:p-6 box-glow shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentView}

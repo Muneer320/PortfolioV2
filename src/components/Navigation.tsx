@@ -18,8 +18,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
   ];
 
   return (
-    <nav className="mt-6 flex justify-center">
-      <div className="flex gap-4 bg-brand-dark/80 p-2 rounded-xl border border-brand-neon/30">
+    <nav className="mt-6 flex justify-center w-full">
+      <div className="flex gap-2 md:gap-4 bg-brand-dark/80 p-2 rounded-xl border border-brand-neon/30 w-full md:w-auto justify-between md:justify-center overflow-x-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = currentView === item.id;
@@ -33,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
               }}
               onMouseEnter={playHover}
               className={`
-                relative flex items-center gap-2 px-6 py-3 rounded-lg transition-all duration-300
+                relative flex items-center justify-center gap-2 px-3 py-2 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex-1 md:flex-none
                 ${
                   isActive
                     ? "bg-brand-neon/20 text-brand-neon shadow-[0_0_15px_rgba(0,255,157,0.3)] border border-brand-neon/50"
@@ -42,7 +42,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
               `}
             >
               <Icon size={18} />
-              <span className="font-bold tracking-wider text-sm">
+              <span className="font-bold tracking-wider text-[10px] md:text-sm hidden sm:inline">
                 {item.label}
               </span>
               {isActive && (

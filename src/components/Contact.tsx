@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Send, Mail, MapPin, Globe, Loader2 } from "lucide-react";
+import { useSound } from "../context/SoundContext";
 
 const Contact: React.FC = () => {
+  const { playHover, playClick } = useSound();
   const [formState, setFormState] = useState<"idle" | "sending" | "sent">(
     "idle",
   );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    playClick();
     setFormState("sending");
     // Simulate network request
     setTimeout(() => {
@@ -17,7 +20,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="h-full flex flex-col md:flex-row gap-8">
+    <div className="min-h-full flex flex-col md:flex-row gap-8 md:h-full">
       <div className="md:w-1/2">
         <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
           <span className="text-brand-neon">
@@ -35,6 +38,7 @@ const Contact: React.FC = () => {
             <input
               type="text"
               required
+              onFocus={playHover}
               className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-brand-neon focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,157,0.2)] transition-all font-mono"
               placeholder="ENTER IDENTIFIER"
             />
@@ -47,6 +51,7 @@ const Contact: React.FC = () => {
             <input
               type="email"
               required
+              onFocus={playHover}
               className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-brand-neon focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,157,0.2)] transition-all font-mono"
               placeholder="ENTER FREQUENCY"
             />
@@ -59,6 +64,7 @@ const Contact: React.FC = () => {
             <textarea
               rows={4}
               required
+              onFocus={playHover}
               className="w-full bg-black/50 border border-gray-700 rounded p-3 text-white focus:border-brand-neon focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,157,0.2)] transition-all font-mono"
               placeholder="TYPE MESSAGE..."
             />
@@ -66,6 +72,7 @@ const Contact: React.FC = () => {
 
           <button
             type="submit"
+            onMouseEnter={playHover}
             disabled={formState !== "idle"}
             className="w-full bg-brand-neon text-black font-bold py-3 rounded hover:bg-white transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >

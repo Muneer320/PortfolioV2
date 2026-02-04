@@ -2,15 +2,18 @@ import React from "react";
 import { projects } from "../data";
 import { Folder, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSound } from "../context/SoundContext";
 
 const Projects: React.FC = () => {
+  const { playHover, playClick } = useSound();
+
   return (
-    <div className="h-full">
+    <div className="min-h-full md:h-full">
       <h2 className="text-xl font-bold text-brand-neon mb-6 flex items-center gap-2">
         <Folder className="animate-pulse" /> MISSION_LOG
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pr-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pr-2 pb-6">
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -18,6 +21,7 @@ const Projects: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: index * 0.1 }}
             className="group relative bg-black/40 border border-brand-blue/30 hover:border-brand-neon/60 rounded-lg p-5 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,255,157,0.1)] hover:-translate-y-1"
+            onMouseEnter={playHover}
           >
             {/* Corner Accents */}
             <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-brand-neon opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -53,6 +57,7 @@ const Projects: React.FC = () => {
 
             <a
               href={project.link}
+              onClick={playClick}
               className="mt-auto flex items-center justify-center gap-2 w-full py-2 bg-brand-neon/10 text-brand-neon hover:bg-brand-neon hover:text-black font-bold text-sm rounded transition-all"
             >
               <ExternalLink size={14} /> INITIALIZE

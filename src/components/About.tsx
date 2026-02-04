@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const About: React.FC = () => {
   return (
-    <div className="h-full flex flex-col gap-6">
+    <div className="min-h-full flex flex-col gap-6 md:h-full">
       <div className="flex items-center gap-4 mb-2">
         <div className="p-3 bg-brand-purple/20 text-brand-purple rounded-lg border border-brand-purple/50">
           <Cpu size={24} />
@@ -19,7 +19,7 @@ const About: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-black/40 border border-white/5 rounded-lg p-6 flex-1 overflow-y-auto custom-scrollbar">
+      <div className="bg-black/40 border border-white/5 rounded-lg p-6 flex-none h-auto md:flex-1 md:overflow-y-auto custom-scrollbar">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3 className="text-brand-neon font-bold mb-4 flex items-center gap-2 text-sm tracking-widest">
