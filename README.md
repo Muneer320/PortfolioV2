@@ -1,30 +1,59 @@
-# Muneer's Gamified Portfolio
+# Muneer's Gamified Portfolio 🎮
 
-A creative, game-like portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion.
+[![Live](https://img.shields.io/badge/live-portfolio320.vercel.app-000?style=flat&logo=vercel&logoColor=white)](https://portfolio320.vercel.app)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Features
+> A cyberpunk-themed, game-like portfolio website with interactive HUD navigation. Like a video game menu, but for showcasing projects.
 
-- **Cyberpunk / Sci-Fi Theme**: Immersive dark UI with neon accents.
-- **Interactive Navigation**: HUD-style menu.
-- **Dynamic Content**: Animations powered by Framer Motion.
-- **Responsive**: Works on desktop and mobile.
+**[🔗 View Live →](https://portfolio320.vercel.app)**
 
-## Tech Stack
+---
 
-- React
-- TypeScript
-- Tailwind CSS (v4)
-- Framer Motion
-- Lucide React (Icons)
-- Vite
+## ✨ Features
 
-## Usage
+- 🎨 **Cyberpunk / Sci-Fi Theme** — Immersive dark UI with neon accents
+- 🕹️ **Interactive HUD Navigation** — Game-style menu system
+- 🎬 **Framer Motion Animations** — Smooth, dynamic transitions
+- 📱 **Fully Responsive** — Desktop and mobile friendly
 
-1. `npm install`
-2. `npm run dev`
+---
 
-## Structure
+## 🛠 Tech Stack
 
-- `src/components`: UI Components for Dashboard, Projects, About, Contact.
-- `src/data.ts`: Centralized content management.
-- `src/App.tsx`: Layout and Routing logic.
+| Category | Technology |
+|----------|-----------|
+| Framework | React |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animation | Framer Motion |
+| Icons | Lucide React |
+| Build | Vite |
+
+---
+
+## 🚀 Quick Start
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── components/    # Dashboard, Projects, About, Contact
+├── data.ts        # Centralized content management
+└── App.tsx        # Layout and routing logic
+```
+
+---
+
+## 📄 License
+
+MIT
