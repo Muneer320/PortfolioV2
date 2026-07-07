@@ -30,6 +30,9 @@ const Contact: React.FC = () => {
           ESTABLISH_UPLINK
         </h2>
 
+        <p className="mb-4 text-sm text-gray-400">
+          Local form demo only. Nothing is sent or saved; use sample details.
+        </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1">
             <label className="text-xs text-brand-blue font-mono">
@@ -78,16 +81,15 @@ const Contact: React.FC = () => {
           >
             {formState === "idle" && (
               <>
-                <Send size={16} /> SEND TRANSMISSION
+                <Send size={16} /> PREVIEW TRANSMISSION
               </>
             )}
             {formState === "sending" && (
               <>
-                <Loader2 size={16} className="animate-spin" /> ENCRYPTING &
-                SENDING...
+                <Loader2 size={16} className="animate-spin" /> PLAYING DEMO...
               </>
             )}
-            {formState === "sent" && <>TRANSMISSION SUCCESSFUL</>}
+            {formState === "sent" && <>DEMO COMPLETE · NOTHING SENT</>}
           </button>
         </form>
       </div>

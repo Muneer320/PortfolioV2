@@ -141,6 +141,13 @@ function MainLayout() {
       {showGame && <HackingMiniGame onClose={() => setShowGame(false)} />}
 
       <main className="relative z-10 p-4 md:p-6 h-[100dvh] flex flex-col max-w-7xl mx-auto">
+        <p className="mb-3 shrink-0 text-xs text-brand-blue">
+          ARCHIVED COLLEGE ASSIGNMENT · Historical demo content · See{" "}
+          <a className="underline" href="https://github.com/Muneer320">
+            Muneer's GitHub
+          </a>{" "}
+          for current work.
+        </p>
         <header className="flex justify-between items-center mb-6 border-b border-brand-neon/30 pb-4 shrink-0">
           <div className="flex items-center gap-2">
             <Cpu className="text-brand-neon animate-pulse" />
